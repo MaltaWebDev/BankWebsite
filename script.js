@@ -25,9 +25,11 @@ btnsOpenModal.forEach(btn => {
   btn.addEventListener('click', openModal);
 });
 
+// close modal on click outside modal or on close btn
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
 
+// close modal on Esc key press
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
     closeModal();
