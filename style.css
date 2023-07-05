@@ -18,6 +18,7 @@
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+  caret-color: transparent;
 }
 
 html {
@@ -37,7 +38,6 @@ body {
 .section {
   padding: 15rem 3rem;
   border-top: 1px solid #ddd;
-
   transition: transform 1s, opacity 1s;
 }
 
