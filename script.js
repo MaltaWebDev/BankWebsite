@@ -41,7 +41,7 @@ document.addEventListener('keydown', function (e) {
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
-// Classic way
+// classic way
 //
 // get co-ordinates of screen when 'learn more' btn is clicked
 // btnScrollTo.addEventListener('click', e => {
@@ -65,9 +65,15 @@ const section1 = document.querySelector('#section--1');
 // });
 // });
 
-/////////////////////////////////////////
-
 // modern way
 btnScrollTo.addEventListener('click', e => {
   section1.scrollIntoView({ behavior: 'smooth' });
+});
+//
+/////////////////////////////////////////
+
+const h1 = document.querySelector('h1');
+
+h1.addEventListener('mouseenter', function (e) {
+  alert('addEventListener: Great! You are reading the heading!! ');
 });
