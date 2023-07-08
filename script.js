@@ -44,38 +44,4 @@ const section1 = document.querySelector('#section--1');
 btnScrollTo.addEventListener('click', e => {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
-
-/////////////////////////////////////////
-// EVENT PROPAGATION
-
-//generate random number
-const randomInt = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
-// generate random color
-const randomColor = () => {
-  return `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
-};
-
-// change bg color of individual nav links
-document.querySelector('.nav__link').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log('LINK', e.target, e.currentTarget);
-
-  // stop propagation
-  e.stopPropagation();
-});
-
-// change bg color of nav links (parent element)
-document.querySelector('.nav__links').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log('CONTAINER', e.target, e.currentTarget);
-});
-
-// change bg color of entire nav
-document.querySelector('.nav').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log('NAV', e.target, e.currentTarget);
-});
-/////////////////////////////////////////
+////////////////////////////////////////
