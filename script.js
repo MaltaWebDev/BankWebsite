@@ -41,39 +41,8 @@ document.addEventListener('keydown', function (e) {
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
-// classic way
-//
-// get co-ordinates of screen when 'learn more' btn is clicked
-// btnScrollTo.addEventListener('click', e => {
-// // get xy rectangle of element
-// const section1xy = section1.getBoundingClientRect();
-// console.log(section1xy);
-// console.log(e.target.getBoundingClientRect());
-// console.log('Current scroll xy: ', window.scrollX, window.scrollY);
-// console.log(
-//   'Current height and width of viewport: ',
-//   document.documentElement.clientHeight,
-//   document.documentElement.clientWidth
-// );
-
-// // scrolling
-// window.scrollTo({
-//   // get absolute position of element relative to the document
-//   left: section1xy.left + window.scrollX,
-//   top: section1xy.top + window.scrollY,
-//   behavior: 'smooth',
-// });
-// });
-
-// modern way
 btnScrollTo.addEventListener('click', e => {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
-//
+
 /////////////////////////////////////////
-
-const h1 = document.querySelector('h1');
-
-h1.addEventListener('mouseenter', function (e) {
-  alert('addEventListener: Great! You are reading the heading!! ');
-});
