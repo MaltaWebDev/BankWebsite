@@ -46,3 +46,24 @@ btnScrollTo.addEventListener('click', e => {
 });
 
 /////////////////////////////////////////
+// EVENT PROPAGATION
+
+//generate random number
+const randomInt = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+// generate random color
+const randomColor = () => {
+  return `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+};
+
+// change bg color of individual nav links
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+});
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+});
+document.querySelector('.nav__link').addEventListener('click', function (e) {});
