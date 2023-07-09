@@ -1,12 +1,14 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
 
+///////////////////////////////////////
+// MODAL WINDOW
 // open modal and prevent scroll to top of page
 const openModal = function (e) {
   e.preventDefault();
@@ -19,7 +21,7 @@ const closeModal = function () {
   overlay.classList.add('hidden');
 };
 
-// loop over all instances of CTA btn and add event listeners
+// loop over all CTA btns and add event listeners
 btnsOpenModal.forEach(btn => {
   btn.addEventListener('click', openModal);
 });
@@ -34,14 +36,30 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+///////////////////////////////////////
 
 ////////////////////////////////////////
 // SMOOTH SCROLLING
-//
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
 
+// Learn More btn
 btnScrollTo.addEventListener('click', e => {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+// add event listeners to all elements with .nav__link
+document.querySelectorAll('.nav__link').forEach(link => {
+  link.addEventListener('click', function (e) {
+    // prevent the href from overriding the event handler
+    e.preventDefault();
+    // get the ID of the target section from the href attribute
+    const sectionId = this.getAttribute('href');
+    // get the target section using its ID
+    const section = document.querySelector(sectionId);
+    // if the target exists, scroll to it smoothly
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
 ////////////////////////////////////////
