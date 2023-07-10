@@ -41,12 +41,12 @@ document.addEventListener('keydown', function (e) {
 ////////////////////////////////////////
 // SMOOTH SCROLLING
 
-// Learn More btn
+// "Learn more" btn
 btnScrollTo.addEventListener('click', e => {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
-// add event listeners to all elements with .nav__link
+// Nav links
 document.querySelectorAll('.nav__link').forEach(link => {
   link.addEventListener('click', function (e) {
     // prevent the href from overriding the event handler
@@ -60,6 +60,28 @@ document.querySelectorAll('.nav__link').forEach(link => {
       section.scrollIntoView({ behavior: 'smooth' });
     }
   });
+});
+
+////////////////////////////////////////
+
+////////////////////////////////////////
+// TABBED COMPONENT
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+// adding event listeners to all elements by looping over them all is avoidable
+// this would result in many unnecessary copies of this code
+// tabs.forEach(tab => tab.addEventListener('click', () => console.log('Tab clicked')))
+
+// let's use event delegation instead
+// apply the event handler to the parent element
+tabsContainer.addEventListener('click', function (e) {
+  // use closest method to avoid accidentally selection the span element
+  const clicked = e.target.closest('.operations__tab');
+  console.log(clicked);
+  clicked.classList.add('operations__tab--active');
 });
 
 ////////////////////////////////////////
