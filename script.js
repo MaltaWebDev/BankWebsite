@@ -6,6 +6,10 @@ const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+const nav = document.querySelector('.nav');
 
 ///////////////////////////////////////
 // MODAL WINDOW
@@ -67,10 +71,6 @@ document.querySelectorAll('.nav__link').forEach(link => {
 ////////////////////////////////////////
 // TABBED COMPONENT
 
-const tabs = document.querySelectorAll('.operations__tab');
-const tabsContainer = document.querySelector('.operations__tab-container');
-const tabsContent = document.querySelectorAll('.operations__content');
-
 // adding event listeners to all elements by looping over them all is avoidable
 // this would result in many unnecessary copies of this code
 // tabs.forEach(tab => tab.addEventListener('click', () => console.log('Tab clicked')))
@@ -80,17 +80,46 @@ const tabsContent = document.querySelectorAll('.operations__content');
 tabsContainer.addEventListener('click', function (e) {
   // use closest method to avoid accidentally selection the span element
   const clicked = e.target.closest('.operations__tab');
-  console.log(clicked);
-  // guard clause
 
-  // activate tab
+  // log the target to check the event handler works
+  console.log(clicked);
+
+  // guard clause
   if (!clicked) return;
-  // clear the class from all three tabs
+
+  // remove active classes
   tabs.forEach(tab => tab.classList.remove('operations__tab--active'));
+  tabsContent.forEach(content =>
+    content.classList.remove('operations__content--active')
+  );
+
   // add the active class to the target
   clicked.classList.add('operations__tab--active');
 
   // activate content area
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
 });
+////////////////////////////////////////
+
+////////////////////////////////////////
+// STICKY NAVIGATION
+
+const initialXY = section1.getBoundingClientRect();
+console.log(initialXY);
+
+// scroll event is not efficient - AVOID
+// far too many events are generated as the user moves around the page
+window.addEventListener('scroll', function (e) {
+  console.log(this.scrollY);
+
+  if (window.scrollY > initialXY.top) {
+    nav.classList.add('sticky');
+  } else {
+    nav.classList.remove('sticky');
+  }
+});
+//////////////////
 
 ////////////////////////////////////////
