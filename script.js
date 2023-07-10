@@ -81,7 +81,16 @@ tabsContainer.addEventListener('click', function (e) {
   // use closest method to avoid accidentally selection the span element
   const clicked = e.target.closest('.operations__tab');
   console.log(clicked);
+  // guard clause
+
+  // activate tab
+  if (!clicked) return;
+  // clear the class from all three tabs
+  tabs.forEach(tab => tab.classList.remove('operations__tab--active'));
+  // add the active class to the target
   clicked.classList.add('operations__tab--active');
+
+  // activate content area
 });
 
 ////////////////////////////////////////
