@@ -106,20 +106,38 @@ tabsContainer.addEventListener('click', function (e) {
 ////////////////////////////////////////
 // STICKY NAVIGATION
 
-const initialXY = section1.getBoundingClientRect();
-console.log(initialXY);
-
+//////////////////
+//  OLD WAY - SCROLL EVENT
+//
+// const initialXY = section1.getBoundingClientRect();
+// console.log(initialXY);
+//
 // scroll event is not efficient - AVOID
 // far too many events are generated as the user moves around the page
-window.addEventListener('scroll', function (e) {
-  console.log(this.scrollY);
+// window.addEventListener('scroll', function (e) {
+//   console.log(this.scrollY);
 
-  if (window.scrollY > initialXY.top) {
-    nav.classList.add('sticky');
-  } else {
-    nav.classList.remove('sticky');
-  }
-});
+//   if (window.scrollY > initialXY.top) {
+//     nav.classList.add('sticky');
+//   } else {
+//     nav.classList.remove('sticky');
+//   }
+// });
 //////////////////
+
+//////////////////
+// BETTER WAY - INTERSECTION API
+//
+const observerCallback = function (entries, observer) {
+  entries.forEach(entry => {
+    console.log(entry);
+  });
+};
+
+const observerOptions = { root: null, threshold: 0.1 };
+
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+const x = observer.observe(section1);
+console.log(x);
 
 ////////////////////////////////////////
