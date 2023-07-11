@@ -129,17 +129,6 @@ tabsContainer.addEventListener('click', function (e) {
 //////////////////
 // BETTER WAY - INTERSECTION API
 //
-// const observerCallback = function (entries, observer) {
-//   entries.forEach(entry => {
-//     console.log(entry);
-//   });
-// };
-
-// const observerOptions = { root: null, threshold: [0, 0.2] };
-
-// const observer = new IntersectionObserver(observerCallback, observerOptions);
-// const x = observer.observe(section1);
-// console.log(x);
 
 const navHeight = nav.getBoundingClientRect().height;
 
