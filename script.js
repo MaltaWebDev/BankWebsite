@@ -10,6 +10,7 @@ const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
 const nav = document.querySelector('.nav');
+const header = document.querySelector('.header');
 
 ///////////////////////////////////////
 // MODAL WINDOW
@@ -128,16 +129,40 @@ tabsContainer.addEventListener('click', function (e) {
 //////////////////
 // BETTER WAY - INTERSECTION API
 //
-const observerCallback = function (entries, observer) {
-  entries.forEach(entry => {
-    console.log(entry);
-  });
+// const observerCallback = function (entries, observer) {
+//   entries.forEach(entry => {
+//     console.log(entry);
+//   });
+// };
+
+// const observerOptions = { root: null, threshold: [0, 0.2] };
+
+// const observer = new IntersectionObserver(observerCallback, observerOptions);
+// const x = observer.observe(section1);
+// console.log(x);
+
+const navHeight = nav.getBoundingClientRect().height;
+
+// create callback function to pass into intersection observer
+const stickyNav = function (entries) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) {
+    nav.classList.add('sticky');
+  } else nav.classList.remove('sticky');
 };
 
-const observerOptions = { root: null, threshold: 0.1 };
+// set a threshold of 0 to capture the moment when the header section disappears from view
+const headerObserverOptions = {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
+};
 
-const observer = new IntersectionObserver(observerCallback, observerOptions);
-const x = observer.observe(section1);
-console.log(x);
+const headerObserver = new IntersectionObserver(
+  stickyNav,
+  headerObserverOptions
+);
+headerObserver.observe(header);
 
 ////////////////////////////////////////
