@@ -132,6 +132,7 @@ tabsContainer.addEventListener('click', function (e) {
 // Create an instance of an intersection observer
 // Pass it a callback func and config
 // The cb func adds the sticky class to the nav bar
+// Then call observe on the intersection observer and pass it the target
 
 // get height of nav bar
 const navHeight = nav.getBoundingClientRect().height;
