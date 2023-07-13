@@ -108,7 +108,7 @@ tabsContainer.addEventListener('click', function (e) {
 // STICKY NAVIGATION
 
 //////////////////
-//  OLD WAY - SCROLL EVENT
+//  OLD WAY - SCROLL EVENT - avoid! use intersection API instead
 //
 // const initialXY = section1.getBoundingClientRect();
 // console.log(initialXY);
@@ -127,31 +127,41 @@ tabsContainer.addEventListener('click', function (e) {
 //////////////////
 
 //////////////////
-// BETTER WAY - INTERSECTION API
+//  INTERSECTION API
 //
+// Create an instance of an intersection observer
+// Pass it a callback func and config
+// The cb func adds the sticky class to the nav bar
 
+// get height of nav bar
 const navHeight = nav.getBoundingClientRect().height;
 
-// create callback function to pass into intersection observer
+// Callback func
 const stickyNav = function (entries) {
+  // get first element of array using destructuring
   const [entry] = entries;
 
+  // if the entry is not intersecting, add sticky class
   if (!entry.isIntersecting) {
     nav.classList.add('sticky');
   } else nav.classList.remove('sticky');
 };
 
-// set a threshold of 0 to capture the moment when the header section disappears from view
+// Threshold of 0 captures the header section disappearing from view
+// Subtract height of nav bar to align the hr at the start of section--1
 const headerObserverOptions = {
   root: null,
   threshold: 0,
   rootMargin: `-${navHeight}px`,
 };
 
+// Intersection observer (callback func, config)
 const headerObserver = new IntersectionObserver(
   stickyNav,
   headerObserverOptions
 );
+
+// Call observe on the header
 headerObserver.observe(header);
 
 ////////////////////////////////////////
@@ -164,6 +174,7 @@ const allSections = document.querySelectorAll('.section');
 const revealSection = function (entries, observer) {
   const [entry] = entries;
   console.log(entry);
+  console.log(typeof entry);
 
   if (!entry.isIntersecting) return;
 
