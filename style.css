@@ -109,6 +109,7 @@ img {
   transition: filter 0.5s;
 }
 
+/* Blur effect */
 .lazy-img {
   filter: blur(20px);
 }
