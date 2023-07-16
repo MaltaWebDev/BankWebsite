@@ -235,6 +235,7 @@ const maxSlide = slides.length - 1;
 const dotContainer = document.querySelector('.dots');
 let currentSlide = 0;
 
+// Add dots
 const createDots = function () {
   slides.forEach(function (_, i) {
     dotContainer.insertAdjacentHTML(
@@ -273,17 +274,25 @@ const previousSlide = function () {
   } else {
     currentSlide--;
   }
-
   goToSlide(currentSlide);
 };
 
-// Call next slide function when right btn is clicked
+// Left and right buttons
 btnRight.addEventListener('click', nextSlide);
 btnLeft.addEventListener('click', previousSlide);
 
+// Left and right keys
 document.addEventListener('keydown', function (e) {
   if (e.key === 'ArrowLeft') previousSlide();
   if (e.key === 'ArrowRight') nextSlide();
+});
+
+// Add dots and functionality
+dotContainer.addEventListener('click', function (e) {
+  if (e.target.classList.contains('dots__dot')) {
+    const { slide } = e.target.dataset;
+    goToSlide(slide);
+  }
 });
 
 //////////////////////////////////////
