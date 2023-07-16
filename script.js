@@ -229,12 +229,25 @@ imgLazyLoadTargets.forEach(img => imgObserver.observe(img));
 //
 
 const slides = document.querySelectorAll('.slide');
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
+
+let currentSlide = 0;
 
 const slider = document.querySelector('.slider');
-slider.style.transform = 'scale(0.5) translatX(-800px)';
+slider.style.transform = 'scale(0.5) translateX(-800px)';
 slider.style.overflow = 'visible';
 
 slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
-// 0%, 100%, 200%, 300%<
+// 0%, 100%, 200%, 300%
+
+// Go right to the next slide
+btnRight.addEventListener('click', function () {
+  currentSlide++;
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${100 * (i - currentSlide)}%)`)
+  );
+});
+// currentSlide = 1: -100%, 0%, 100%, 200%
 
 //////////////////////////////////////
