@@ -225,29 +225,56 @@ imgLazyLoadTargets.forEach(img => imgObserver.observe(img));
 //////////////////////////////////////
 
 //////////////////////////////////////
-//  SLIDER
+//  SLIDER 1 - IMAGE GALLERY
 //
+
+// slider component
 
 const slides = document.querySelectorAll('.slide');
 const btnLeft = document.querySelector('.slider__btn--left');
 const btnRight = document.querySelector('.slider__btn--right');
 
 let currentSlide = 0;
+const maxSlide = slides.length - 1;
 
-const slider = document.querySelector('.slider');
-slider.style.transform = 'scale(0.5) translateX(-800px)';
-slider.style.overflow = 'visible';
+// const slider = document.querySelector('.slider');
+// slider.style.transform = 'scale(0.5) translateX(-800px)';
+// slider.style.overflow = 'visible';
 
-slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
-// 0%, 100%, 200%, 300%
-
-// Go right to the next slide
-btnRight.addEventListener('click', function () {
-  currentSlide++;
+// Use the translateX CSS property to move the images
+const goToSlide = function (slide) {
   slides.forEach(
-    (s, i) => (s.style.transform = `translateX(${100 * (i - currentSlide)}%)`)
+    (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
   );
-});
+};
+
+// currentSlide = 0: 0%, 100%, 200%, 300%
 // currentSlide = 1: -100%, 0%, 100%, 200%
+goToSlide(0);
+
+// Go to the next slide 👉
+const nextSlide = function () {
+  if (currentSlide === maxSlide) {
+    currentSlide = 0;
+  } else {
+    currentSlide++;
+  }
+  goToSlide(currentSlide);
+};
+
+// Go back one slide 👈
+const previousSlide = function () {
+  if (currentSlide === 0) {
+    currentSlide = maxSlide;
+  } else {
+    currentSlide--;
+  }
+
+  goToSlide(currentSlide);
+};
+
+// Call next slide function when right btn is clicked
+btnRight.addEventListener('click', nextSlide);
+btnLeft.addEventListener('click', previousSlide);
 
 //////////////////////////////////////
