@@ -228,18 +228,22 @@ imgLazyLoadTargets.forEach(img => imgObserver.observe(img));
 //  SLIDER 1 - IMAGE GALLERY
 //
 
-// slider component
-
 const slides = document.querySelectorAll('.slide');
 const btnLeft = document.querySelector('.slider__btn--left');
 const btnRight = document.querySelector('.slider__btn--right');
-
-let currentSlide = 0;
 const maxSlide = slides.length - 1;
+const dotContainer = document.querySelector('.dots');
+let currentSlide = 0;
 
-// const slider = document.querySelector('.slider');
-// slider.style.transform = 'scale(0.5) translateX(-800px)';
-// slider.style.overflow = 'visible';
+const createDots = function () {
+  slides.forEach(function (_, i) {
+    dotContainer.insertAdjacentHTML(
+      'beforeend',
+      `<button class="dots__dot" data-slide="${i}"></button>`
+    );
+  });
+};
+createDots();
 
 // Use the translateX CSS property to move the images
 const goToSlide = function (slide) {
@@ -276,5 +280,10 @@ const previousSlide = function () {
 // Call next slide function when right btn is clicked
 btnRight.addEventListener('click', nextSlide);
 btnLeft.addEventListener('click', previousSlide);
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'ArrowLeft') previousSlide();
+  if (e.key === 'ArrowRight') nextSlide();
+});
 
 //////////////////////////////////////
