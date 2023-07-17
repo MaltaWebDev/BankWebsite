@@ -319,3 +319,28 @@ const sliderComponent = function () {
 
 sliderComponent();
 //////////////////////////////////////
+
+//////////////////////////////////////
+// LOAD UNLOAD EVENTS
+//
+
+document.addEventListener('DOMContentLoaded', function (e) {
+  console.log('HTML parsed and DOM built!', e);
+});
+
+window.addEventListener('load', function (e) {
+  console.log('Page fully loaded!', e);
+});
+
+// 'Before unload' event fires right before user navigates away from page
+// Do not overuse - only for unsaved data warnings
+window.addEventListener('beforeunload', function (e) {
+  e.preventDefault();
+  console.log(e);
+  e.return = '';
+});
+//////////////////////////////////////
+
+//////////////////////////////////////
+//
+//
