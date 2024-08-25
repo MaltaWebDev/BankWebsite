@@ -50,17 +50,70 @@ document.querySelector('.btn--close-cookie').addEventListener('click', () => {
   message.remove();
 });
 
-// add styles
-message.style.backgroundColor = '#37383d';
-message.style.width = '120%';
-// message.style.padding = '1rem 0';
+// Query and atttribute selectors
+//
+// // add styles
+// message.style.backgroundColor = '#37383d';
+// message.style.width = '120%';
+// // message.style.padding = '1rem 0';
 
-// get inline styles
-console.log(message.style.backgroundColor);
+// // get inline styles
+// // console.log(message.style.backgroundColor);
 
-// get computed styles if needed
-console.log(getComputedStyle(message).color);
+// // get computed styles if needed
+// //console.log(getComputedStyle(message).color);
 
-// set height of banner programatically
-message.style.height =
-  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+// // set height of banner programatically
+// message.style.height =
+//   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+
+// // set custom properties
+// // console.log(
+// //   document.documentElement.style.setProperty('--color-primary', 'blue')
+// // );
+
+// // get attributes
+// const logo = document.querySelector('.nav__logo');
+// console.log(logo.alt);
+// console.log(logo.src);
+// console.log(logo.className);
+
+// // get non-standard attributes
+// console.log(logo.designer); // undefined - cannot read non-standard attributes
+// console.log(logo.getAttribute('designer')); // returns Angus
+
+// // set attributes
+// logo.alt = 'Minimalist logo';
+// logo.setAttribute('designer', 'Jonas');
+
+// // get absolute src path
+// console.log(logo.src); // http://127.0.0.1:5500/img/logo.png
+// // get relative src path
+// console.log(logo.getAttribute('src')); // img/logo.png
+
+// // get absolute href path
+// const navLink = document.querySelector('.nav__link');
+// console.log(navLink.href);
+// // get relative path
+// console.log(navLink.getAttribute('href'));
+
+// // get hrefs from all nav links by looping over them
+// const navLinksAll = document.querySelectorAll('.nav__link'); // returns node list
+// // console.log(navLinksAll);
+// navLinksAll.forEach(navLink => {
+//   console.log(`href attribute: ${navLink.getAttribute('href')}`);
+// });
+
+// // Data attributes
+// console.log(logo.getAttribute('data-version')); // 3.0
+// console.log(logo.dataset.version); // 3.0
+
+// // Classes
+// logo.classList.add('nav');
+// logo.classList.remove('nav');
+// logo.classList.toggle('nav');
+// logo.classList.contains('nav');
+
+// // Do not use this as it overrides any existing classes
+// // Use logo.classList.add() instead
+// logo.className = 'Jonas';
